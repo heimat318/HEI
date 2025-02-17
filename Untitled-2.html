@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGI社会</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A85FF;
+            --cyber-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background: radial-gradient(circle at center, #0f172a, #1e293b);
+            color: rgba(255,255,255,0.9);
+            min-height: 100vh;
+        }
+
+        /* 新增赛博光晕动画 */
+        @keyframes cyber-glow {
+            0% { filter: drop-shadow(0 0 5px var(--cyber-blue)); }
+            50% { filter: drop-shadow(0 0 20px var(--neon-purple)); }
+            100% { filter: drop-shadow(0 0 5px var(--cyber-blue)); }
+        }
+
+        .header {
+            background: linear-gradient(135deg, 
+                rgba(42, 133, 255, 0.8) 0%,
+                rgba(0, 243, 255, 0.6) 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 新增背景网格效果 */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .header img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 30px var(--cyber-blue);
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            animation: cyber-glow 3s infinite;
+        }
+
+        .header img:hover {
+            transform: rotateY(180deg) scale(1.1);
+        }
+
+        .header h1 {
+            margin-top: 25px;
+            font-size: 3em;
+            background: linear-gradient(90deg, #fff, var(--cyber-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(188, 19, 254, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 40px;
+            background: rgba(16, 24, 39, 0.8);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        /* 新增卡片悬停效果 */
+        .topic-card {
+            background: linear-gradient(145deg, 
+                rgba(42, 133, 255, 0.15), 
+                rgba(16, 24, 39, 0.3));
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 243, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .topic-card h2 {
+            color: var(--cyber-blue);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topic-card h2 i {
+            color: var(--neon-purple);
+            font-size: 1.2em;
+        }
+
+        .topic-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, 
+                rgba(42, 133, 255, 0.9), 
+                rgba(0, 243, 255, 0.8));
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-purple), 
+                transparent);
+        }
+
+        .footer a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.3);
+        }
+
+        /* 新增响应式设计 */
+        @media (max-width: 768px) {
+            .header { padding: 50px 15px; }
+            .header h1 { font-size: 2em; }
+            .content { margin: 30px 15px; padding: 20px; }
+            .topic-card { padding: 20px; }
+        }
+
+        /* 新增粒子背景动画 */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+
+    <div class="header">
+        <img src="https://img2.utuku.imgcdc.com/650x0/fo/20210429/9e984841-47ed-47ac-90b7-1fd479ec63bb.jpg" alt="AGI Logo">
+        <h1>AGI社会</h1>
+    </div>
+
+    <div class="content">
+        <div class="topic-card">
+            <h2><i class="fas fa-brain"></i>人工通用智能的未来</h2>
+            <p>AGI将重塑人类文明的基础架构，通过量子认知模型和神经形态计算，我们正在构建具有创造性思维和伦理判断能力的超级智能体系。</p>
+        </div>
+
+        <div class="topic-card">
+            <h2><i class="fas fa-users-cog"></i>社会架构变革</h2>
+            <p>在神经形态网络和分布式智能合约的支持下，社会资源分配将实现动态优化，去中心化自治组织（DAO）将成为主流治理形式。</p>
+        </div>
+
+        <div class="topic-card">
+            <h2><i class="fas fa-hands-helping"></i>人机共生演进</h2>
+            <p>通过脑机接口和情感计算，人类与AGI将形成共生认知系统，生物智能与人工智能的融合将开启全新的文明形态。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p style="margin-bottom: 20px; color: rgba(255,255,255,0.9);">探索认知边界 构建智能文明</p>
+        <a href="https://y.qq.com/" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-rocket"></i>
+            开启未来之旅
+        </a>
+    </div>
+
+    <script>
+        // 添加粒子动画
+        function createParticles() {
+            const container = document.querySelector('.particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    background: rgba(0, 243, 255, ${Math.random() * 0.5});
+                    width: ${Math.random() * 3}px;
+                    height: ${Math.random() * 3}px;
+                    border-radius: 50%;
+                    animation: move ${5 + Math.random() * 10}s linear infinite;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                `;
+                container.appendChild(particle);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes move {
+                    0% { transform: translateY(0) translateX(0); }
+                    100% { transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        createParticles();
+    </script>
+</body>
+</html>
